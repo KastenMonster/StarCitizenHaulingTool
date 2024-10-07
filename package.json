@@ -8,7 +8,6 @@
   "scripts": {
     "start": "vite",
     "build": "tsc && vite build",
-    "watch": "tsc && vite build --watch",
     "prettier": "prettier \"./src/**/*.(ts|tsx)\" --write"
   },
   "keywords": [
