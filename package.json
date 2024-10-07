@@ -3,7 +3,7 @@
   "author": "KastenMonster",
   "version": "0.0.1",
   "type": "module",
-  "license": "MIT",
+  "license": "GPL-3.0-only",
   "scripts": {
     "dev": "vite dev",
     "build": "tsc && vite build",
