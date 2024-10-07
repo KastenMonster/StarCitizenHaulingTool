@@ -1,15 +1,5 @@
 @import '@mantine/core/styles.css';
 
-html {
-    color-scheme: normal !important;
-}
-
-body {
-    height: 100vh;
-    background-color: transparent !important;
-    overflow: hidden;
-}
-
 #root {
     height: 100%;
 }

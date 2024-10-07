@@ -1,27 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import classes from './App.module.css';
+import Header from './padges/Header/Header';
+import Main from './padges/Main/Main';
 
 const App: React.FC = () => {
   return (
-    <div className={classes.wrapper}>
-      Hello There
-    </div>
+    <>
+      <Header />
+      <Main />
+    </>
   );
 };
-
-/*
-  Dashboard
-  Lager
-  Bestellungen
-*/
-
-/*
-<Routes>
-  <Route path="/" element={<Dashboard />} />
-  <Route path="/transactions" element={<Transactions />} />
-  <Route path="/accounts" element={<Accounts />} />
-  <Route path="/invoices" element={<Invoices />} />
-</Routes>
-*/
 
 export default App;

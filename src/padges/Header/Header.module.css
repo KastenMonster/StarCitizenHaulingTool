@@ -1,0 +1,7 @@
+.header {
+    position: relative;
+    width: 100%;
+    top: 0;
+    background-color: var(--mantine-color-dark-8);
+    padding: var(--mantine-spacing-md);
+}
