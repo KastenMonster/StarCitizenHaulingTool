@@ -1,0 +1,22 @@
+.wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: var(--mantine-spacing-sm);
+}
+
+.container {
+    background-color: var(--mantine-color-dark-8);
+    position: relative;
+    padding: var(--mantine-spacing-sm);
+    width: 400px;
+    border: 1.3px solid var(--mantine-color-dark-5);
+    border-radius: var(--mantine-radius-md);
+    box-shadow: var(--mantine-shadow-md);
+}
+
+@media (max-width: 30em) {
+    .container {
+        width: 95%;
+    }
+}
