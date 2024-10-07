@@ -1,12 +1,27 @@
-import '@mantine/core/styles.css';
-import { Welcome } from './Welcome/Welcome';
-import { ColorSchemeToggle } from './ColorSchemeToggle/ColorSchemeToggle';
+import React, { useState } from 'react';
+import classes from './App.module.css';
 
-export default function App() {
+const App: React.FC = () => {
   return (
-    <div>
-      <Welcome />
-      <ColorSchemeToggle />
+    <div className={classes.wrapper}>
+      Hello There
     </div>
   );
-}
+};
+
+/*
+  Dashboard
+  Lager
+  Bestellungen
+*/
+
+/*
+<Routes>
+  <Route path="/" element={<Dashboard />} />
+  <Route path="/transactions" element={<Transactions />} />
+  <Route path="/accounts" element={<Accounts />} />
+  <Route path="/invoices" element={<Invoices />} />
+</Routes>
+*/
+
+export default App;

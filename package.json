@@ -2,36 +2,36 @@
   "name": "starcitizenhaulingtool",
   "author": "KastenMonster",
   "version": "0.0.1",
-  "type": "module",
   "license": "GPL-3.0-only",
+  "description": "A Hauling Tool to better coordinate hauling in Star Citizen",
+  "type": "module",
   "scripts": {
-    "dev": "vite dev",
+    "start": "vite",
     "build": "tsc && vite build",
-    "prettier": "prettier --write \"**/*.{ts,tsx}\""
+    "watch": "tsc && vite build --watch",
+    "prettier": "prettier \"./src/**/*.(ts|tsx)\" --write"
   },
-  "dependencies": {
-    "@mantine/core": "7.13.0",
-    "@mantine/hooks": "7.13.0",
-    "@mantine/vanilla-extract": "7.13.0",
-    "@vanilla-extract/css": "^1.15.3",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
-  },
+  "keywords": [
+    "Stare Citizen",
+    "Hauling Tool"
+  ],
   "devDependencies": {
+    "@types/node": "^22.7.4",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
-    "@typescript-eslint/eslint-plugin": "^7.13.1",
-    "@typescript-eslint/parser": "^7.13.1",
-    "@vanilla-extract/vite-plugin": "^4.0.11",
     "@vitejs/plugin-react": "^4.3.1",
-    "eslint": "^8.57.0",
-    "eslint-plugin-react-hooks": "^4.6.2",
-    "eslint-plugin-react-refresh": "^0.4.7",
-    "postcss": "^8.4.38",
-    "postcss-preset-mantine": "1.17.0",
+    "postcss": "^8.4.47",
+    "postcss-preset-mantine": "^1.17.0",
     "postcss-simple-vars": "^7.0.1",
-    "prettier": "^3.3.3",
-    "typescript": "^5.5.2",
-    "vite": "^5.3.1"
+    "prettier": "^3.3.2",
+    "typescript": "^5.5.3",
+    "vite": "^5.3.3"
+  },
+  "dependencies": {
+    "@mantine/core": "^7.13.0",
+    "@mantine/hooks": "^7.13.0",
+    "jotai": "^2.10.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   }
 }
