@@ -1,22 +1,52 @@
 .wrapper {
+    position: relative;
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-top: var(--mantine-spacing-sm);
+    flex: 1;
 }
 
 .container {
-    background-color: var(--mantine-color-dark-8);
-    position: relative;
-    padding: var(--mantine-spacing-sm);
-    width: 400px;
-    border: 1.3px solid var(--mantine-color-dark-5);
-    border-radius: var(--mantine-radius-md);
-    box-shadow: var(--mantine-shadow-md);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: var(--mantine-spacing-md);
+    padding-bottom: var(--mantine-spacing-md);
 }
 
-@media (max-width: 30em) {
+.widgetWrapper {
+    display: flex;
+    gap: var(--mantine-spacing-md);
+    flex-flow: column;
+    width: 350px;
+}
+
+.widget {
+    position: relative;
+    background-color: var(--mantine-color-dark-8);
+    padding: var(--mantine-spacing-xs);
+    border-radius: var(--mantine-radius-md);
+    box-shadow: var(--mantine-shadow-md);
+    border: 1px solid var(--mantine-color-dark-5);
+    height: fit-content;
+    transition: .4s;
+}
+
+.mobileCreateButton {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: var(--mantine-spacing-md);
+}
+
+@media (max-width: em(750)) {
     .container {
-        width: 95%;
+        padding: 0px var(--mantine-spacing-xs);
+    }
+    .widgetWrapper {
+        width: 50%;
     }
 }

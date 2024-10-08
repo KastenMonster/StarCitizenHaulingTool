@@ -1,8 +1,7 @@
-import { ActionIcon, Button, Group, Modal, Title, Tooltip } from '@mantine/core';
+import { Group, Title } from '@mantine/core';
 import classes from './Header.module.css';
-import { IconHelpCircle, IconSettings } from '@tabler/icons-react';
-import { useDisclosure } from '@mantine/hooks';
 import HelpIcon from '../../components/HelpIcon';
+import SettingsIcon from '../../components/SettingsIcon';
 
 const Header = () => {
   return (
@@ -11,11 +10,7 @@ const Header = () => {
         <Group justify="space-between">
           <HelpIcon />
           <Title order={3}>Star Citizen Hauling Tool</Title>
-          <Tooltip withArrow position="left" label={'Settings'}>
-            <ActionIcon variant="subtle" color="gray" size={'md'}>
-              <IconSettings />
-            </ActionIcon>
-          </Tooltip>
+          <SettingsIcon />
         </Group>
       </header>
     </>

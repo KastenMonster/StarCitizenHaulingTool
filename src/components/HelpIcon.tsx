@@ -7,7 +7,7 @@ const HelpIcon = () => {
 
   return (
     <>
-      <Tooltip withArrow position="right" label={'Show Helptext'}>
+      <Tooltip position="right" label={'Help'}>
         <ActionIcon variant="subtle" color="gray" size={'md'} onClick={open}>
           <IconHelpCircle />
         </ActionIcon>
