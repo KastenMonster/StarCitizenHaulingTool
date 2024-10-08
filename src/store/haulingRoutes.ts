@@ -1,21 +1,17 @@
-import { atom, useAtom } from "jotai"
-
-interface NameListe {
-    [key:string]: {}
-}
+import { atom, useAtom } from 'jotai';
 
 interface HaulingRoute {
-    origin: NameListe
-    destination: NameListe
+  origin: string[];
+  destination: string[];
 }
 
 interface DetailedHaulingRoute extends HaulingRoute {
-    price: number
-    scu: number
+  price: number;
+  scu: number;
 }
 
-const routeAtom = atom<HaulingRoute[]>([])
-const detailedRouteAtom = atom<DetailedHaulingRoute[]>([])
+const routeAtom = atom<HaulingRoute[]>([]);
+const detailedRouteAtom = atom<DetailedHaulingRoute[]>([]);
 
-const useHaulingRoutes = () => useAtom(routeAtom)
-const useDetailedHaulingRoutes = () => useAtom(detailedRouteAtom)
+export const useHaulingRoutes = () => useAtom(routeAtom);
+export const useDetailedHaulingRoutes = () => useAtom(detailedRouteAtom);
