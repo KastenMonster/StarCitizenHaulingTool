@@ -1,4 +1,4 @@
-import { ActionIcon, Button, Divider, Group, Modal, Stack, Text } from '@mantine/core';
+import { ActionIcon, Button, Divider, Group, Modal, NumberInput, Stack, Text, Tooltip } from '@mantine/core';
 import { IconCircleMinus, IconPlus } from '@tabler/icons-react';
 import { useSettings } from '../../../store/settings';
 import { useDetailedHaulingRoutes, useHaulingRoutes } from '../../../store/haulingRoutes';
@@ -20,8 +20,8 @@ const CreateRouteModal = (props: CreateRouteModal) => {
     initialValues: {
       origins: [''],
       destinations: [''],
-      price: 0,
-      scu: 0,
+      price: null,
+      scu: null,
     },
     validate: (values) => {
       let errors: any = null;
@@ -39,6 +39,15 @@ const CreateRouteModal = (props: CreateRouteModal) => {
         }
       });
 
+      if(!settings.quickMode){
+        if(!values.price || values.price <= 0){
+            errors['price'] = true;
+        }
+        if(!values.scu || values.scu <= 0){
+            errors['scu'] = true;
+        }
+      }
+
       return errors;
     },
   });
@@ -47,25 +56,29 @@ const CreateRouteModal = (props: CreateRouteModal) => {
     <Group key={'route-origin-' + index} gap={'md'}>
       <SelectCreatable style={{ flex: 1 }} placeholder="Select a origin" {...form.getInputProps(`origins.${index}`)} />
       {index !== 0 ? (
-        <ActionIcon color="red" variant="subtle" onClick={() => form.removeListItem('origins', index)}>
-          <IconCircleMinus />
-        </ActionIcon>
+        <Tooltip label='Remove'>
+            <ActionIcon color="red" variant="subtle" onClick={() => form.removeListItem('origins', index)}>
+                <IconCircleMinus />
+            </ActionIcon>
+        </Tooltip>
       ) : (
-        <ActionIcon
-          color="gray"
-          variant="subtle"
-          onClick={() => {
-            const value = form.getValues().origins[0];
-            if (value.length <= 0) {
-              form.setFieldError('origins.0', true);
-              return;
-            }
-            form.setFieldValue('origins.0', '');
-            form.insertListItem('origins', value);
-          }}
-        >
-          <IconPlus />
-        </ActionIcon>
+        <Tooltip label='Add extra origin'>
+          <ActionIcon
+            color="gray"
+            variant="subtle"
+            onClick={() => {
+                const value = form.getValues().origins[0];
+                if (value.length <= 0) {
+                form.setFieldError('origins.0', true);
+                return;
+                }
+                form.setFieldValue('origins.0', '');
+                form.insertListItem('origins', value);
+            }}
+            >
+            <IconPlus />
+          </ActionIcon>
+        </Tooltip>
       )}
     </Group>
   ));
@@ -78,25 +91,29 @@ const CreateRouteModal = (props: CreateRouteModal) => {
         {...form.getInputProps(`destinations.${index}`)}
       />
       {index !== 0 ? (
-        <ActionIcon color="red" variant="subtle" onClick={() => form.removeListItem('destinations', index)}>
-          <IconCircleMinus />
-        </ActionIcon>
+        <Tooltip label='Remove'>
+          <ActionIcon color="red" variant="subtle" onClick={() => form.removeListItem('destinations', index)}>
+            <IconCircleMinus />
+          </ActionIcon>
+        </Tooltip>
       ) : (
-        <ActionIcon
-          color="gray"
-          variant="subtle"
-          onClick={() => {
-            const value = form.getValues().destinations[0];
-            if (value.length <= 0) {
-              form.setFieldError('destinations.0', true);
-              return;
-            }
-            form.setFieldValue('destinations.0', '');
-            form.insertListItem('destinations', value);
-          }}
-        >
-          <IconPlus />
-        </ActionIcon>
+        <Tooltip label='Add extra destination'>
+          <ActionIcon
+            color="gray"
+            variant="subtle"
+            onClick={() => {
+              const value = form.getValues().destinations[0];
+              if (value.length <= 0) {
+                form.setFieldError('destinations.0', true);
+                return;
+              }
+              form.setFieldValue('destinations.0', '');
+              form.insertListItem('destinations', value);
+            }}
+          >
+            <IconPlus />
+          </ActionIcon>
+        </Tooltip>
       )}
     </Group>
   ));
@@ -117,7 +134,7 @@ const CreateRouteModal = (props: CreateRouteModal) => {
           } else {
             setDetailedHaulingRoutes([
               ...detailedHaulingRoutes,
-              { origin: values.origins, destination: values.destinations, price: values.price, scu: values.scu },
+              { origin: values.origins, destination: values.destinations, price: values.price || 10, scu: values.scu || 10},
             ]);
           }
         })}
@@ -138,6 +155,21 @@ const CreateRouteModal = (props: CreateRouteModal) => {
               <Text c={'dimmed'} size="sm">
                 Mission Details
               </Text>
+              <Group grow gap={'sm'}>
+                <NumberInput
+                    suffix='k'
+                    thousandSeparator='.'
+                    decimalSeparator=','
+                    placeholder='Enter the mission reward'
+                    {...form.getInputProps('price')}
+                />
+                <NumberInput 
+                    placeholder='Enter the total scu'
+                    thousandSeparator='.'
+                    decimalSeparator=','
+                    {...form.getInputProps('scu')}
+                />
+              </Group>
             </>
           )}
           <Button variant="light" size="compact.md" type="submit">

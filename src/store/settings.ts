@@ -3,11 +3,13 @@ import { atom, useAtom } from 'jotai';
 interface Settings {
   quickMode: boolean;
   scu: number;
+  clearOnStart: boolean
 }
 
 const localSettingsAtom = atom<Settings>({
   quickMode: true,
   scu: 96,
+  clearOnStart: false
 });
 
 const settingsAtom = atom(

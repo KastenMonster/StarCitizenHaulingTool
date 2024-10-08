@@ -3,16 +3,12 @@ import { useDisclosure, useMediaQuery } from '@mantine/hooks';
 import { IconPlus } from '@tabler/icons-react';
 import { useEffect } from 'react';
 import classes from '../Main.module.css';
-import { useSettings } from '../../../store/settings';
-import { useDetailedHaulingRoutes, useHaulingRoutes } from '../../../store/haulingRoutes';
 import CreateRouteModal from './CreateRouteModal';
+import DisplayRoutes from './DisplayRoutes';
 
 const CreateRouteWidget = () => {
   const [opened, { open, close }] = useDisclosure(false);
   const isMobile = useMediaQuery(`(max-width: ${em(750)})`);
-  const [settings, setSettings] = useSettings();
-  const [haulingRoutes, setHaulingRoutes] = useHaulingRoutes();
-  const [detailedHaulingRoutes, setDetailedHaulingRoutes] = useDetailedHaulingRoutes();
 
   useEffect(() => {
     function handleCreateShortcut(e: KeyboardEvent) {
@@ -57,6 +53,7 @@ const CreateRouteWidget = () => {
         </Button>
       </Tooltip>
       <Divider my={'xs'} />
+      <DisplayRoutes />
       {isMobile && (
         <Portal>
           <div className={classes.mobileCreateButton}>

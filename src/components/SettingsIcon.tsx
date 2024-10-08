@@ -14,7 +14,7 @@ const SettingsIcon = () => {
       <Drawer
         opened={opened}
         onClose={close}
-        title={<Title order={2}>Settings</Title>}
+        title={<Text fw={'bold'} size='xl'>Settings</Text>}
         position="right"
         size={isMobile ? '70%' : 'md'}
       >
@@ -28,7 +28,7 @@ const SettingsIcon = () => {
                 <>
                   <Text size="sm">Enable quick mode for minimal input</Text>
                   <Text fs={'italic'} size="sm" c={'dimmed'}>
-                    Disclaimer: The tool will therefore only provide you with route that as the most matches
+                    Disclaimer: The tool will therefore only provide you with a tour that has the most matches
                   </Text>
                 </>
               }
@@ -54,6 +54,22 @@ const SettingsIcon = () => {
               value={settings.scu}
               onChange={(value) => setSettings('scu', Number(value))}
             />
+          </Group>
+          <Group justify="space-between">
+            <TextWithHelp
+              label="Clear on Start"
+              w={250}
+              multiline
+              helpText={
+                <>
+                  <Text size="sm">Clears all Routes when starting a created tour</Text>
+                  <Text fs={'italic'} size="sm" c={'dimmed'}>
+                    Disclaimer: If this is disabled only the routes included in the tour will be deleted
+                  </Text>
+                </>
+              }
+            />
+            <Switch checked={settings.clearOnStart} onChange={(e) => setSettings('clearOnStart', e.currentTarget.checked)} />
           </Group>
         </Stack>
       </Drawer>

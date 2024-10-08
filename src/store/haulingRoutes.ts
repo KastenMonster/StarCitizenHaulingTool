@@ -10,7 +10,79 @@ interface DetailedHaulingRoute extends HaulingRoute {
   scu: number;
 }
 
-const routeAtom = atom<HaulingRoute[]>([]);
+const routeAtom = atom<HaulingRoute[]>([
+  {
+    origin: ['Port Tressler', 'Grey Cat Was weiß ich VI'],
+    destination: ['Int. Spacstaion']
+  },
+  {
+    origin: ['Port Tressler', 'Grey Cat Was weiß ich VI'],
+    destination: ['Int. Spacstaion']
+  },
+  {
+    origin: ['Port Tressler', 'Grey Cat Was weiß ich VI'],
+    destination: ['Int. Spacstaion']
+  },{
+    origin: ['Port Tressler', 'Grey Cat Was weiß ich VI'],
+    destination: ['Int. Spacstaion']
+  },
+  {
+    origin: ['Port Tressler', 'Grey Cat Was weiß ich VI'],
+    destination: ['Int. Spacstaion']
+  },
+  {
+    origin: ['Port Tressler', 'Grey Cat Was weiß ich VI'],
+    destination: ['Int. Spacstaion']
+  },
+  {
+    origin: ['Port Tressler', 'Grey Cat Was weiß ich VI'],
+    destination: ['Int. Spacstaion']
+  },
+  {
+    origin: ['Port Tressler', 'Grey Cat Was weiß ich VI'],
+    destination: ['Int. Spacstaion']
+  },
+  {
+    origin: ['Port Tressler', 'Grey Cat Was weiß ich VI'],
+    destination: ['Int. Spacstaion']
+  },
+  {
+    origin: ['Port Tressler', 'Grey Cat Was weiß ich VI'],
+    destination: ['Int. Spacstaion']
+  },
+  {
+    origin: ['Port Tressler', 'Grey Cat Was weiß ich VI'],
+    destination: ['Int. Spacstaion']
+  },
+  {
+    origin: ['Port Tressler', 'Grey Cat Was weiß ich VI'],
+    destination: ['Int. Spacstaion']
+  },
+  {
+    origin: ['Port Tressler', 'Grey Cat Was weiß ich VI'],
+    destination: ['Int. Spacstaion']
+  },
+  {
+    origin: ['Port Tressler', 'Grey Cat Was weiß ich VI'],
+    destination: ['Int. Spacstaion']
+  },
+  {
+    origin: ['Port Tressler', 'Grey Cat Was weiß ich VI'],
+    destination: ['Int. Spacstaion']
+  },
+  {
+    origin: ['Port Tressler', 'Grey Cat Was weiß ich VI'],
+    destination: ['Int. Spacstaion']
+  },
+  {
+    origin: ['Port Tressler', 'Grey Cat Was weiß ich VI'],
+    destination: ['Int. Spacstaion']
+  },
+  {
+    origin: ['Port Tressler', 'Grey Cat Was weiß ich VI'],
+    destination: ['Int. Spacstaion']
+  }
+]);
 const detailedRouteAtom = atom<DetailedHaulingRoute[]>([]);
 
 export const useHaulingRoutes = () => useAtom(routeAtom);

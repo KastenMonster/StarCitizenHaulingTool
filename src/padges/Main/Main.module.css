@@ -15,17 +15,22 @@
     justify-content: center;
     gap: var(--mantine-spacing-md);
     padding-bottom: var(--mantine-spacing-md);
+    box-sizing: border-box;
 }
 
 .widgetWrapper {
+    position: relative;
     display: flex;
     gap: var(--mantine-spacing-md);
     flex-flow: column;
     width: 350px;
+    box-sizing: border-box;
 }
 
 .widget {
     position: relative;
+    display: flex;
+    flex-direction: column;
     background-color: var(--mantine-color-dark-8);
     padding: var(--mantine-spacing-xs);
     border-radius: var(--mantine-radius-md);
@@ -33,13 +38,35 @@
     border: 1px solid var(--mantine-color-dark-5);
     height: fit-content;
     transition: .4s;
+    max-height: 100%;
 }
 
 .mobileCreateButton {
     position: absolute;
-    bottom: 0;
+    bottom: 10px;
     right: 0;
     margin: var(--mantine-spacing-md);
+}
+
+.routeWrapper {
+    position: relative;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--mantine-spacing-md);
+    flex: 1;
+    height: 1005;
+    overflow: scroll;
+}
+
+.routeContainer {
+    background-color: var(--mantine-color-dark-6);
+    border-radius: var(--mantine-radius-md);
+    padding: 7px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
 }
 
 @media (max-width: em(750)) {
