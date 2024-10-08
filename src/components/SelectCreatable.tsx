@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Combobox, InputBase, MantineStyleProp, useCombobox } from '@mantine/core';
+import { Combobox, Group, InputBase, MantineStyleProp, Text, useCombobox } from '@mantine/core';
 import { useLocations } from '../store/locations';
+import { IconCheck, IconFlag } from '@tabler/icons-react';
 
 interface SelectCreatable {
   value?: string | null;
@@ -31,8 +32,11 @@ const SelectCreatable = (props: SelectCreatable) => {
     : locations.filter((item) => item.toLowerCase().includes(search.toLowerCase().trim()));
 
   const options = filteredOptions.map((item) => (
-    <Combobox.Option value={item} key={item}>
-      {item}
+    <Combobox.Option value={item} key={item} bg={item === props.value ? 'dark.5' : undefined}>
+      <Group gap={'xs'}>
+        {item === props.value && <IconCheck size={'.9rem'}/>}
+        {item}
+      </Group>
     </Combobox.Option>
   ));
 
@@ -77,9 +81,9 @@ const SelectCreatable = (props: SelectCreatable) => {
 
       <Combobox.Dropdown>
         <Combobox.Options>
-          {options}
+          {locations.length <= 0 && search === '' ? <Combobox.Empty>Nothing found</Combobox.Empty> : options}
           {!exactOptionMatch && search.trim().length > 0 && (
-            <Combobox.Option value="$create">+ Create {search}</Combobox.Option>
+            <Combobox.Option value="$create">Create: {search}</Combobox.Option>
           )}
         </Combobox.Options>
       </Combobox.Dropdown>
