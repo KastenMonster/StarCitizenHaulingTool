@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import classes from './Main.module.css';
 import CreateRouteWidget from './components/CreateRouteWidget';
 import TourWidget from './components/TourWidget';
+import HistoryWidget from './components/HistoryWidget';
 
 const Main = () => {
   const mainRef = useRef<HTMLDivElement>(null);
@@ -18,7 +19,9 @@ const Main = () => {
           <div className={classes.widget} style={{ maxHeight: '50%' }}>
             <TourWidget />
           </div>
-          <div className={classes.widget}></div>
+          <div className={classes.widget}>
+            <HistoryWidget />
+          </div>
         </div>
       </div>
     </main>

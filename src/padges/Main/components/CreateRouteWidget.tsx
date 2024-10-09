@@ -42,7 +42,7 @@ const CreateRouteWidget = () => {
         label={
           <>
             <Text size="sm">Create a new route</Text>
-            <Text fs={'italic'} c={'dimmed'}>
+            <Text fs={'italic'} size='sm' c={'dimmed'}>
               STRG + K
             </Text>
           </>
