@@ -14,7 +14,11 @@ const SettingsIcon = () => {
       <Drawer
         opened={opened}
         onClose={close}
-        title={<Text fw={'bold'} size='xl'>Settings</Text>}
+        title={
+          <Text fw={'bold'} size="xl">
+            Settings
+          </Text>
+        }
         position="right"
         size={isMobile ? '70%' : 'md'}
       >
@@ -69,7 +73,10 @@ const SettingsIcon = () => {
                 </>
               }
             />
-            <Switch checked={settings.clearOnStart} onChange={(e) => setSettings('clearOnStart', e.currentTarget.checked)} />
+            <Switch
+              checked={settings.clearOnStart}
+              onChange={(e) => setSettings('clearOnStart', e.currentTarget.checked)}
+            />
           </Group>
         </Stack>
       </Drawer>

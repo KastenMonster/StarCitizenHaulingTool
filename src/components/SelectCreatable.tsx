@@ -34,7 +34,7 @@ const SelectCreatable = (props: SelectCreatable) => {
   const options = filteredOptions.map((item) => (
     <Combobox.Option value={item} key={item} bg={item === props.value ? 'dark.5' : undefined}>
       <Group gap={'xs'}>
-        {item === props.value && <IconCheck size={'.9rem'}/>}
+        {item === props.value && <IconCheck size={'.9rem'} />}
         {item}
       </Group>
     </Combobox.Option>

@@ -39,12 +39,12 @@ const CreateRouteModal = (props: CreateRouteModal) => {
         }
       });
 
-      if(!settings.quickMode){
-        if(!values.price || values.price <= 0){
-            errors['price'] = true;
+      if (!settings.quickMode) {
+        if (!values.price || values.price <= 0) {
+          errors['price'] = true;
         }
-        if(!values.scu || values.scu <= 0){
-            errors['scu'] = true;
+        if (!values.scu || values.scu <= 0) {
+          errors['scu'] = true;
         }
       }
 
@@ -56,26 +56,26 @@ const CreateRouteModal = (props: CreateRouteModal) => {
     <Group key={'route-origin-' + index} gap={'md'}>
       <SelectCreatable style={{ flex: 1 }} placeholder="Select a origin" {...form.getInputProps(`origins.${index}`)} />
       {index !== 0 ? (
-        <Tooltip label='Remove'>
-            <ActionIcon color="red" variant="subtle" onClick={() => form.removeListItem('origins', index)}>
-                <IconCircleMinus />
-            </ActionIcon>
+        <Tooltip label="Remove">
+          <ActionIcon color="red" variant="subtle" onClick={() => form.removeListItem('origins', index)}>
+            <IconCircleMinus />
+          </ActionIcon>
         </Tooltip>
       ) : (
-        <Tooltip label='Add extra origin'>
+        <Tooltip label="Add extra origin">
           <ActionIcon
             color="gray"
             variant="subtle"
             onClick={() => {
-                const value = form.getValues().origins[0];
-                if (value.length <= 0) {
+              const value = form.getValues().origins[0];
+              if (value.length <= 0) {
                 form.setFieldError('origins.0', true);
                 return;
-                }
-                form.setFieldValue('origins.0', '');
-                form.insertListItem('origins', value);
+              }
+              form.setFieldValue('origins.0', '');
+              form.insertListItem('origins', value);
             }}
-            >
+          >
             <IconPlus />
           </ActionIcon>
         </Tooltip>
@@ -91,13 +91,13 @@ const CreateRouteModal = (props: CreateRouteModal) => {
         {...form.getInputProps(`destinations.${index}`)}
       />
       {index !== 0 ? (
-        <Tooltip label='Remove'>
+        <Tooltip label="Remove">
           <ActionIcon color="red" variant="subtle" onClick={() => form.removeListItem('destinations', index)}>
             <IconCircleMinus />
           </ActionIcon>
         </Tooltip>
       ) : (
-        <Tooltip label='Add extra destination'>
+        <Tooltip label="Add extra destination">
           <ActionIcon
             color="gray"
             variant="subtle"
@@ -134,7 +134,12 @@ const CreateRouteModal = (props: CreateRouteModal) => {
           } else {
             setDetailedHaulingRoutes([
               ...detailedHaulingRoutes,
-              { origin: values.origins, destination: values.destinations, price: values.price || 10, scu: values.scu || 10},
+              {
+                origin: values.origins,
+                destination: values.destinations,
+                price: values.price || 10,
+                scu: values.scu || 10,
+              },
             ]);
           }
         })}
@@ -157,17 +162,17 @@ const CreateRouteModal = (props: CreateRouteModal) => {
               </Text>
               <Group grow gap={'sm'}>
                 <NumberInput
-                    suffix='k'
-                    thousandSeparator='.'
-                    decimalSeparator=','
-                    placeholder='Enter the mission reward'
-                    {...form.getInputProps('price')}
+                  suffix="k"
+                  thousandSeparator="."
+                  decimalSeparator=","
+                  placeholder="Enter the mission reward"
+                  {...form.getInputProps('price')}
                 />
-                <NumberInput 
-                    placeholder='Enter the total scu'
-                    thousandSeparator='.'
-                    decimalSeparator=','
-                    {...form.getInputProps('scu')}
+                <NumberInput
+                  placeholder="Enter the total scu"
+                  thousandSeparator="."
+                  decimalSeparator=","
+                  {...form.getInputProps('scu')}
                 />
               </Group>
             </>
