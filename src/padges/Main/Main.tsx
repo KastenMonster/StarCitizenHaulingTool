@@ -17,10 +17,10 @@ const Main = () => {
         </div>
         <div className={classes.widgetWrapper}>
           <div className={classes.widget}>
-            <TourWidget />
+            <HistoryWidget />
           </div>
           <div className={classes.widget}>
-            <HistoryWidget />
+            <TourWidget />
           </div>
         </div>
       </div>

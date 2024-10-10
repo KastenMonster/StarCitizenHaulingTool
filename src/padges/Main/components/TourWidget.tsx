@@ -1,70 +1,15 @@
-import { Badge, Button, em, Flex, Group, Kbd, Stack, Text, Tooltip } from '@mantine/core';
+import { Badge, Button, em, Flex, Group, Indicator, Kbd, Stack, Text, Tooltip } from '@mantine/core';
 import { useSettingsValue } from '../../../store/settings';
 import { useDetailedHaulingRoutesValue, useHaulingRoutesValue } from '../../../store/haulingRoutes';
 import { useEffect, useState } from 'react';
 import { Route } from './DisplayRoutes';
 import { IconRocket } from '@tabler/icons-react';
 import classes from '../Main.module.css';
-
-interface Route {
-  origin: string[];
-  destination: string[];
-  price?: number;
-  scu?: number;
-}
-
-function getBest(routes: Route[], maxScu?: number): Route[] {
-  const matchCounts = new Map<Route, number>();
-
-  for (let i = 0; i < routes.length; i++) {
-    const routeA = routes[i];
-    let matchCount = 0;
-
-    for (let j = 0; j < routes.length; j++) {
-      if (i === j) continue;
-      const routeB = routes[j];
-
-      const originMatch = routeA.origin.every((o) => routeB.origin.includes(o));
-      const destinationMatch = routeA.destination.every((d) => routeB.destination.includes(d));
-
-      if (originMatch && destinationMatch) {
-        matchCount++;
-      }
-    }
-
-    matchCounts.set(routeA, matchCount);
-  }
-
-  const maxMatchCount = Math.max(...Array.from(matchCounts.values()));
-  const candidates = Array.from(matchCounts.keys()).filter((route) => matchCounts.get(route) === maxMatchCount);
-
-  if (!maxScu) {
-    return candidates;
-  }
-
-  const sortedCandidates = candidates
-    .filter((route) => route.price !== undefined && route.scu !== undefined)
-    .sort((a, b) => b.price! / b.scu! - a.price! / a.scu!);
-
-  const selectedRoutes: Route[] = [];
-  let currentScu = 0;
-
-  for (const route of sortedCandidates) {
-    if (route.scu! + currentScu <= maxScu) {
-      selectedRoutes.push(route);
-      currentScu += route.scu!;
-    }
-
-    if (currentScu >= maxScu) {
-      break;
-    }
-  }
-
-  return selectedRoutes;
-}
+import { getBest } from '../../../utils/getBestTour';
+import { FilteredRoute, filterTour } from '../../../utils/filterTour';
 
 interface BestTour {
-  routes: Route[];
+  routes: FilteredRoute[];
   maxScu?: number;
   profit?: number;
 }
@@ -84,7 +29,7 @@ const TourWidget = () => {
       }
 
       setBestTour({
-        routes: best,
+        routes: filterTour(best),
       });
     } else {
       const best = getBest(dHRoutes, settings.scu);
@@ -102,7 +47,7 @@ const TourWidget = () => {
       });
 
       setBestTour({
-        routes: best,
+        routes: filterTour(best),
         maxScu: maxScu,
         profit: maxPrice,
       });
@@ -150,15 +95,11 @@ const TourWidget = () => {
         )}
         <div
           style={{
-            maxHeight: em(200),
+            flexGrow: 1,
           }}
         >
           <div className={classes.routeWrapper}>
-            {bestTour && settings.quickMode ? (
-              <Route origin={bestTour.routes[0].origin} destination={bestTour.routes[0].destination} />
-            ) : (
-              bestTour?.routes.map((route, index) => <Route key={'display-route-' + index} {...route} />)
-            )}
+            {bestTour?.routes.map((route, index) => <Route key={'display-route-' + index} {...route} />)}
           </div>
         </div>
         <Tooltip label="Start">

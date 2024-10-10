@@ -50,6 +50,7 @@ interface Route {
   destination: string[];
   price?: number;
   scu?: number;
+  duplicates?: number
 }
 export const Route = (props: Route) => {
   return (
@@ -94,6 +95,9 @@ export const Route = (props: Route) => {
           </ActionIcon>
         </Tooltip>
       )}
+      {props.duplicates && props.duplicates > 1 &&
+        <Text right={10} top={3} pos={'absolute'} c={'dimmed'} size='sm'>+{props.duplicates}</Text>
+      }
     </div>
   );
 };
