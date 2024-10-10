@@ -1,14 +1,16 @@
 {
   "name": "starcitizenhaulingtool",
   "author": "KastenMonster",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "license": "GPL-3.0-only",
+  "homepage": "https://kastenmonster.github.io/StarCitizenHaulingTool",
   "description": "A Hauling Tool to better coordinate hauling in Star Citizen",
   "type": "module",
   "scripts": {
     "start": "vite",
     "mobile": "vite --host",
     "build": "tsc && vite build",
+    "deploy": "gh-pages -d build",
     "prettier": "prettier \"./src/**/*.(ts|tsx)\" --write"
   },
   "keywords": [
