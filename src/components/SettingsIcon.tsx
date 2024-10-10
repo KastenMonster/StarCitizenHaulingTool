@@ -81,7 +81,7 @@ const SettingsIcon = () => {
         </Stack>
       </Drawer>
       <Tooltip position="left" label={'Settings'}>
-        <ActionIcon variant="subtle" color={isMobile ? 'cyan' : 'gray'} size={'md'} onClick={open}>
+        <ActionIcon variant="subtle" color={'gray'} size={'md'} onClick={open}>
           <IconSettings />
         </ActionIcon>
       </Tooltip>
