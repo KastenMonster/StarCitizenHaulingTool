@@ -88,7 +88,7 @@ export const Route = (props: Route) => {
           <Badge color="blue" variant="light">
             {props.price}k
           </Badge>
-          <Badge color="gray" variant="light">
+          <Badge color="yellow" variant="light">
             {props.scu} SCU
           </Badge>
         </Flex>

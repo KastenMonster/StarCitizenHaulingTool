@@ -1,9 +1,10 @@
-import { Badge, Button, Group, Kbd, Stack, Text, Tooltip } from '@mantine/core';
+import { Badge, Button, em, Flex, Group, Kbd, Stack, Text, Tooltip } from '@mantine/core';
 import { useSettings } from '../../../store/settings';
 import { useDetailedHaulingRoutes, useHaulingRoutes } from '../../../store/haulingRoutes';
 import { useEffect, useState } from 'react';
 import { Route } from './DisplayRoutes';
 import { IconRocket } from '@tabler/icons-react';
+import classes from '../Main.module.css';
 
 interface Route {
   origin: string[];
@@ -42,8 +43,8 @@ function getBest(routes: Route[], maxScu?: number): Route[] {
   }
 
   const sortedCandidates = candidates
-    .filter((route) => route.price != null && route.scu != null)
-    .sort((a, b) => a.price! / a.scu! - b.price! / b.scu!);
+    .filter((route) => route.price !== undefined && route.scu !== undefined)
+    .sort((a, b) => b.price! / b.scu! - a.price! / a.scu!);
 
   const selectedRoutes: Route[] = [];
   let currentScu = 0;
@@ -63,7 +64,7 @@ function getBest(routes: Route[], maxScu?: number): Route[] {
 }
 
 interface BestTour {
-  route: Route;
+  routes: Route[];
   maxScu?: number;
   profit?: number;
 }
@@ -83,7 +84,7 @@ const TourWidget = () => {
       }
 
       setBestTour({
-        route: best[0],
+        routes: best,
       });
     } else {
       const best = getBest(dHRoutes, settings.scu);
@@ -101,12 +102,12 @@ const TourWidget = () => {
       });
 
       setBestTour({
-        route: best[0],
+        routes: best,
         maxScu: maxScu,
         profit: maxPrice,
       });
     }
-  }, [hRoutes, dHRoutes]);
+  }, [hRoutes, dHRoutes, settings]);
 
   return (
     <>
@@ -128,16 +129,38 @@ const TourWidget = () => {
           </Text>
         )}
         {!settings.quickMode && bestTour?.maxScu && bestTour.profit && (
-          <Group justify="flex-start" gap={'xs'}>
-            <Badge color="blue" variant="light">
-              {bestTour.profit}k
-            </Badge>
-            <Badge color="gray" variant="light">
-              {bestTour.maxScu} SCU
-            </Badge>
+          <Group gap={'xs'}>
+            <Flex gap={'xs'} justify={'center'}>
+              <Text c={'dimmed'} size="sm">
+                Profit:
+              </Text>
+              <Badge color="blue" variant="light">
+                {bestTour.profit}k
+              </Badge>
+            </Flex>
+            <Flex gap={'xs'} justify={'center'}>
+              <Text c={'dimmed'} size="sm">
+                Total:
+              </Text>
+              <Badge color="yellow" variant="light">
+                {bestTour.maxScu} SCU
+              </Badge>
+            </Flex>
           </Group>
         )}
-        {bestTour && <Route origin={bestTour.route.origin} destination={bestTour.route.destination} />}
+        <div
+          style={{
+            maxHeight: em(200),
+          }}
+        >
+          <div className={classes.routeWrapper}>
+            {bestTour && settings.quickMode ? (
+              <Route origin={bestTour.routes[0].origin} destination={bestTour.routes[0].destination} />
+            ) : (
+              bestTour?.routes.map((route, index) => <Route key={'display-route-' + index} {...route} />)
+            )}
+          </div>
+        </div>
         <Tooltip label="Start">
           <Button disabled={!bestTour} color="green" variant="light" fullWidth size="compact-md">
             <IconRocket />

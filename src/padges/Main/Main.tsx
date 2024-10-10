@@ -16,7 +16,7 @@ const Main = () => {
           </div>
         </div>
         <div className={classes.widgetWrapper}>
-          <div className={classes.widget} style={{ maxHeight: '50%' }}>
+          <div className={classes.widget}>
             <TourWidget />
           </div>
           <div className={classes.widget}>
