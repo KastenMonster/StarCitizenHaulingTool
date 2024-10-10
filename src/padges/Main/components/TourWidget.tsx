@@ -7,6 +7,7 @@ import { IconRocket } from '@tabler/icons-react';
 import classes from '../Main.module.css';
 import { getBest, TourRoute } from '../../../utils/getBestTour';
 import { FilteredRoute, filterTour } from '../../../utils/filterTour';
+import { useTotalProfit } from '../../../store/totalProfit';
 
 interface BestTour {
   routes: FilteredRoute[];
@@ -20,6 +21,7 @@ const TourWidget = () => {
   const [hRoutes, setHRoutes] = useHaulingRoutes();
   const [dHRoutes, setDHRoutes] = useDetailedHaulingRoutes();
   const [bestTour, setBestTour] = useState<BestTour | null>(null);
+  const [total, setTotal] = useTotalProfit()
 
   useEffect(() => {
     if (settings.quickMode) {
@@ -113,6 +115,7 @@ const TourWidget = () => {
             fullWidth 
             size="compact-md"
             onClick={() => {
+              if(!settings.quickMode) setTotal(total + ((bestTour?.profit || 0) * 1000))
               if(settings.clearOnStart){
                 setDHRoutes([]);
                 setHRoutes([]);

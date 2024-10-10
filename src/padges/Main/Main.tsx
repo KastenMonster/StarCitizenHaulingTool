@@ -2,13 +2,14 @@ import { useRef } from 'react';
 import classes from './Main.module.css';
 import CreateRouteWidget from './components/CreateRouteWidget';
 import TourWidget from './components/TourWidget';
-import HistoryWidget from './components/HistoryWidget';
+import HistoryWidget from './components/TotalProfitWidget';
+import { useSettingsValue } from '../../store/settings';
 
 const Main = () => {
-  const mainRef = useRef<HTMLDivElement>(null);
+  const settings = useSettingsValue()
 
   return (
-    <main ref={mainRef} className={classes.wrapper}>
+    <main className={classes.wrapper}>
       <div className={classes.container}>
         <div className={classes.widgetWrapper}>
           <div className={classes.widget}>
@@ -16,9 +17,11 @@ const Main = () => {
           </div>
         </div>
         <div className={classes.widgetWrapper}>
-          <div className={classes.widget}>
-            <HistoryWidget />
-          </div>
+          {!settings.quickMode && (
+            <div className={classes.widget}>
+              <HistoryWidget />
+            </div>
+          )}
           <div className={classes.widget}>
             <TourWidget />
           </div>

@@ -1,6 +1,9 @@
-import { Badge } from '@mantine/core';
+import { Badge, Text } from '@mantine/core';
+import { useTotalProfitValue } from '../../../store/totalProfit';
 
 const HistoryWidget = () => {
+  const total = useTotalProfitValue()
+
   return (
     <>
       <Badge
@@ -12,8 +15,9 @@ const HistoryWidget = () => {
           transform: 'translateY(-70%)',
         }}
       >
-        History
+        Total Profit
       </Badge>
+      <Text fw={'bold'}>{total.toLocaleString('de')} UEC</Text>
     </>
   );
 };
