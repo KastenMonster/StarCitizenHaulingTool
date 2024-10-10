@@ -1,6 +1,6 @@
-import { atom, useAtom, useAtomValue } from "jotai";
+import { atom, useAtom, useAtomValue } from 'jotai';
 
-const totalProfitAtom = atom<number>(0)
+const totalProfitAtom = atom<number>(0);
 
-export const useTotalProfit = () => useAtom(totalProfitAtom)
-export const useTotalProfitValue = () => useAtomValue(totalProfitAtom)
+export const useTotalProfit = () => useAtom(totalProfitAtom);
+export const useTotalProfitValue = () => useAtomValue(totalProfitAtom);

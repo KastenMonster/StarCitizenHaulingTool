@@ -37,7 +37,11 @@ const SettingsIcon = () => {
                 </>
               }
             />
-            <Switch size='md' checked={settings.quickMode} onChange={(e) => setSettings('quickMode', e.currentTarget.checked)} />
+            <Switch
+              size="md"
+              checked={settings.quickMode}
+              onChange={(e) => setSettings('quickMode', e.currentTarget.checked)}
+            />
           </Group>
           <Group justify="space-between" gap={'lg'} grow>
             <TextWithHelp
@@ -74,7 +78,7 @@ const SettingsIcon = () => {
               }
             />
             <Switch
-              size='md'
+              size="md"
               checked={settings.clearOnStart}
               onChange={(e) => setSettings('clearOnStart', e.currentTarget.checked)}
             />

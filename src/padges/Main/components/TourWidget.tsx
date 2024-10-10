@@ -8,20 +8,22 @@ import classes from '../Main.module.css';
 import { getBest, TourRoute } from '../../../utils/getBestTour';
 import { FilteredRoute, filterTour } from '../../../utils/filterTour';
 import { useTotalProfit } from '../../../store/totalProfit';
+import { useMediaQuery } from '@mantine/hooks';
 
 interface BestTour {
   routes: FilteredRoute[];
-  rawRoutes: TourRoute[]
+  rawRoutes: TourRoute[];
   maxScu?: number;
   profit?: number;
 }
 
 const TourWidget = () => {
   const settings = useSettingsValue();
+  const isMobile = useMediaQuery(`(max-width: ${em(750)})`);
   const [hRoutes, setHRoutes] = useHaulingRoutes();
   const [dHRoutes, setDHRoutes] = useDetailedHaulingRoutes();
   const [bestTour, setBestTour] = useState<BestTour | null>(null);
-  const [total, setTotal] = useTotalProfit()
+  const [total, setTotal] = useTotalProfit();
 
   useEffect(() => {
     if (settings.quickMode) {
@@ -33,7 +35,7 @@ const TourWidget = () => {
 
       setBestTour({
         routes: filterTour(best),
-        rawRoutes: best
+        rawRoutes: best,
       });
     } else {
       const best = getBest(dHRoutes, settings.scu);
@@ -73,9 +75,14 @@ const TourWidget = () => {
         Tour
       </Badge>
       <Stack gap={'xs'}>
-        {!bestTour && (
+        {!bestTour && !isMobile && (
           <Text c={'dimmed'} size="sm">
-            Please add routes via the field or by using <Kbd>STRG + K</Kbd>
+            Please add routes via the button below or by using <Kbd>STRG + K</Kbd>
+          </Text>
+        )}
+        {!bestTour && isMobile && (
+          <Text c={'dimmed'} size="sm">
+            Please add routes via the plus button at the bottom right
           </Text>
         )}
         {!settings.quickMode && bestTour?.maxScu && bestTour.profit && (
@@ -108,26 +115,24 @@ const TourWidget = () => {
           </div>
         </div>
         <Tooltip label="Start">
-          <Button 
-            disabled={!bestTour} 
-            color="green" 
-            variant="light" 
-            fullWidth 
+          <Button
+            disabled={!bestTour}
+            color="green"
+            variant="light"
+            fullWidth
             size="compact-lg"
             onClick={() => {
-              if(!settings.quickMode) setTotal(total + ((bestTour?.profit || 0) * 1000))
-              if(settings.clearOnStart){
+              if (!settings.quickMode) setTotal(total + (bestTour?.profit || 0) * 1000);
+              if (settings.clearOnStart) {
                 setDHRoutes([]);
                 setHRoutes([]);
-              }
-              else {
-                if(settings.quickMode){
-                  const remainingRoutes = hRoutes.filter((v) => !bestTour?.rawRoutes.includes(v))
-                  setHRoutes(remainingRoutes)
-                }
-                else {
-                  const remainingRoutes = dHRoutes.filter((v) => !bestTour?.rawRoutes.includes(v))
-                  setDHRoutes([...remainingRoutes])
+              } else {
+                if (settings.quickMode) {
+                  const remainingRoutes = hRoutes.filter((v) => !bestTour?.rawRoutes.includes(v));
+                  setHRoutes(remainingRoutes);
+                } else {
+                  const remainingRoutes = dHRoutes.filter((v) => !bestTour?.rawRoutes.includes(v));
+                  setDHRoutes([...remainingRoutes]);
                 }
               }
             }}

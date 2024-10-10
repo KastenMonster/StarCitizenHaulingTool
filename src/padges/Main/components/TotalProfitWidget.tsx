@@ -2,7 +2,7 @@ import { Badge, Text } from '@mantine/core';
 import { useTotalProfitValue } from '../../../store/totalProfit';
 
 const HistoryWidget = () => {
-  const total = useTotalProfitValue()
+  const total = useTotalProfitValue();
 
   return (
     <>

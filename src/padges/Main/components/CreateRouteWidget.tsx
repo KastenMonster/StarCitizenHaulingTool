@@ -40,21 +40,21 @@ const CreateRouteWidget = () => {
       </Badge>
       {!isMobile && (
         <>
-            <Tooltip
-                label={
-                <>
-                    <Text size="sm">Create a new route</Text>
-                    <Text fs={'italic'} size="sm" c={'dimmed'}>
-                    STRG + K
-                    </Text>
-                </>
-                }
-            >
-                <Button onClick={open} fullWidth size="compact-lg" color="blue" variant="light">
-                <IconPlus />
-                </Button>
-            </Tooltip>
-            <Divider my={'xs'} />
+          <Tooltip
+            label={
+              <>
+                <Text size="sm">Create a new route</Text>
+                <Text fs={'italic'} size="sm" c={'dimmed'}>
+                  STRG + K
+                </Text>
+              </>
+            }
+          >
+            <Button onClick={open} fullWidth size="compact-lg" color="blue" variant="light">
+              <IconPlus />
+            </Button>
+          </Tooltip>
+          <Divider my={'xs'} />
         </>
       )}
       <DisplayRoutes />
