@@ -1,4 +1,4 @@
-import { atom, useAtom } from 'jotai';
+import { atom, useAtom, useAtomValue } from 'jotai';
 
 interface HaulingRoute {
   origin: string[];
@@ -14,4 +14,6 @@ const routeAtom = atom<HaulingRoute[]>([]);
 const detailedRouteAtom = atom<DetailedHaulingRoute[]>([]);
 
 export const useHaulingRoutes = () => useAtom(routeAtom);
+export const useHaulingRoutesValue = () => useAtomValue(routeAtom);
 export const useDetailedHaulingRoutes = () => useAtom(detailedRouteAtom);
+export const useDetailedHaulingRoutesValue = () => useAtomValue(detailedRouteAtom);

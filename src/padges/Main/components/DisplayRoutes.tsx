@@ -1,20 +1,14 @@
 import { ActionIcon, Badge, Divider, Flex, Text, ThemeIcon, Tooltip } from '@mantine/core';
 import { useDetailedHaulingRoutes, useHaulingRoutes } from '../../../store/haulingRoutes';
-import { useSettings } from '../../../store/settings';
+import { useSettingsValue } from '../../../store/settings';
 import classes from '../Main.module.css';
-import {
-  IconArrowBarDown,
-  IconArrowBarToDown,
-  IconArrowBarToUp,
-  IconArrowBarUp,
-  IconCircleMinus,
-} from '@tabler/icons-react';
+import { IconArrowBarToDown, IconArrowBarUp, IconCircleMinus } from '@tabler/icons-react';
 import { randomId } from '@mantine/hooks';
 
 const DisplayRoutes = () => {
   const [hRoutes, sethRoutes] = useHaulingRoutes();
   const [dHRoutes, setDHRoutes] = useDetailedHaulingRoutes();
-  const [settings, setSettings] = useSettings();
+  const settings = useSettingsValue();
 
   return (
     <div className={classes.routeWrapper}>

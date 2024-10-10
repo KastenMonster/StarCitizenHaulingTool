@@ -1,6 +1,6 @@
 import { ActionIcon, Button, Divider, Group, Modal, NumberInput, Stack, Text, Tooltip } from '@mantine/core';
 import { IconCircleMinus, IconPlus } from '@tabler/icons-react';
-import { useSettings } from '../../../store/settings';
+import { useSettingsValue } from '../../../store/settings';
 import { useDetailedHaulingRoutes, useHaulingRoutes } from '../../../store/haulingRoutes';
 import { useForm } from '@mantine/form';
 import SelectCreatable from '../../../components/SelectCreatable';
@@ -11,7 +11,7 @@ interface CreateRouteModal {
 }
 
 const CreateRouteModal = (props: CreateRouteModal) => {
-  const [settings, setSettings] = useSettings();
+  const settings = useSettingsValue();
   const [haulingRoutes, setHaulingRoutes] = useHaulingRoutes();
   const [detailedHaulingRoutes, setDetailedHaulingRoutes] = useDetailedHaulingRoutes();
 

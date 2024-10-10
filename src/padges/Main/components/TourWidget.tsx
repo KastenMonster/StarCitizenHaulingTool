@@ -1,6 +1,6 @@
 import { Badge, Button, em, Flex, Group, Kbd, Stack, Text, Tooltip } from '@mantine/core';
-import { useSettings } from '../../../store/settings';
-import { useDetailedHaulingRoutes, useHaulingRoutes } from '../../../store/haulingRoutes';
+import { useSettingsValue } from '../../../store/settings';
+import { useDetailedHaulingRoutesValue, useHaulingRoutesValue } from '../../../store/haulingRoutes';
 import { useEffect, useState } from 'react';
 import { Route } from './DisplayRoutes';
 import { IconRocket } from '@tabler/icons-react';
@@ -70,9 +70,9 @@ interface BestTour {
 }
 
 const TourWidget = () => {
-  const [settings, setSettings] = useSettings();
-  const [hRoutes, setHRoutes] = useHaulingRoutes();
-  const [dHRoutes, setDHRoutes] = useDetailedHaulingRoutes();
+  const settings = useSettingsValue();
+  const hRoutes = useHaulingRoutesValue();
+  const dHRoutes = useDetailedHaulingRoutesValue();
   const [bestTour, setBestTour] = useState<BestTour | null>(null);
 
   useEffect(() => {

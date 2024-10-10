@@ -1,4 +1,4 @@
-import { atom, useAtom } from 'jotai';
+import { atom, useAtom, useAtomValue } from 'jotai';
 
 interface Settings {
   quickMode: boolean;
@@ -22,3 +22,4 @@ const settingsAtom = atom(
 );
 
 export const useSettings = () => useAtom(settingsAtom);
+export const useSettingsValue = () => useAtomValue(settingsAtom);
