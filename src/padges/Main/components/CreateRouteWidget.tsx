@@ -38,27 +38,31 @@ const CreateRouteWidget = () => {
       >
         Routes
       </Badge>
-      <Tooltip
-        label={
-          <>
-            <Text size="sm">Create a new route</Text>
-            <Text fs={'italic'} size="sm" c={'dimmed'}>
-              STRG + K
-            </Text>
-          </>
-        }
-      >
-        <Button onClick={open} fullWidth size="compact-md" color="blue" variant="light">
-          <IconPlus />
-        </Button>
-      </Tooltip>
-      <Divider my={'xs'} />
+      {!isMobile && (
+        <>
+            <Tooltip
+                label={
+                <>
+                    <Text size="sm">Create a new route</Text>
+                    <Text fs={'italic'} size="sm" c={'dimmed'}>
+                    STRG + K
+                    </Text>
+                </>
+                }
+            >
+                <Button onClick={open} fullWidth size="compact-lg" color="blue" variant="light">
+                <IconPlus />
+                </Button>
+            </Tooltip>
+            <Divider my={'xs'} />
+        </>
+      )}
       <DisplayRoutes />
       {isMobile && (
         <Portal>
           <div className={classes.mobileCreateButton}>
             <Tooltip label="Create a new route">
-              <ActionIcon onClick={open} radius={'xl'} size={rem(50)}>
+              <ActionIcon onClick={open} radius={'100%'} size={rem(65)}>
                 <IconPlus />
               </ActionIcon>
             </Tooltip>

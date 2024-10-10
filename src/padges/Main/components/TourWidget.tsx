@@ -113,7 +113,7 @@ const TourWidget = () => {
             color="green" 
             variant="light" 
             fullWidth 
-            size="compact-md"
+            size="compact-lg"
             onClick={() => {
               if(!settings.quickMode) setTotal(total + ((bestTour?.profit || 0) * 1000))
               if(settings.clearOnStart){
