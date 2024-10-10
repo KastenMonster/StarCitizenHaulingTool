@@ -10,28 +10,28 @@ interface DetailedHaulingRoute extends HaulingRoute {
   scu: number;
 }
 
-const mockData:HaulingRoute[] = [
+const mockData: HaulingRoute[] = [
   {
     origin: ['tressler', 'bab'],
-    destination: ['greycat', 'pyro']
+    destination: ['greycat', 'pyro'],
   },
   {
     origin: ['tressler', 'bab'],
-    destination: ['greycat', 'pyro']
+    destination: ['greycat', 'pyro'],
   },
   {
     origin: ['tressler', 'bab'],
-    destination: ['pyro']
+    destination: ['pyro'],
   },
   {
     origin: ['tressler', 'bab'],
-    destination: ['greycat']
+    destination: ['greycat'],
   },
   {
     origin: ['tressler', 'bab'],
-    destination: ['greycat']
-  }
-]
+    destination: ['greycat'],
+  },
+];
 
 const routeAtom = atom<HaulingRoute[]>(mockData);
 const detailedRouteAtom = atom<DetailedHaulingRoute[]>([]);

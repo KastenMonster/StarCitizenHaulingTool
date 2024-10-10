@@ -1,23 +1,24 @@
 import { Badge, Button, em, Flex, Group, Indicator, Kbd, Stack, Text, Tooltip } from '@mantine/core';
 import { useSettingsValue } from '../../../store/settings';
-import { useDetailedHaulingRoutesValue, useHaulingRoutesValue } from '../../../store/haulingRoutes';
+import { useDetailedHaulingRoutes, useHaulingRoutes } from '../../../store/haulingRoutes';
 import { useEffect, useState } from 'react';
 import { Route } from './DisplayRoutes';
 import { IconRocket } from '@tabler/icons-react';
 import classes from '../Main.module.css';
-import { getBest } from '../../../utils/getBestTour';
+import { getBest, TourRoute } from '../../../utils/getBestTour';
 import { FilteredRoute, filterTour } from '../../../utils/filterTour';
 
 interface BestTour {
   routes: FilteredRoute[];
+  rawRoutes: TourRoute[]
   maxScu?: number;
   profit?: number;
 }
 
 const TourWidget = () => {
   const settings = useSettingsValue();
-  const hRoutes = useHaulingRoutesValue();
-  const dHRoutes = useDetailedHaulingRoutesValue();
+  const [hRoutes, setHRoutes] = useHaulingRoutes();
+  const [dHRoutes, setDHRoutes] = useDetailedHaulingRoutes();
   const [bestTour, setBestTour] = useState<BestTour | null>(null);
 
   useEffect(() => {
@@ -30,6 +31,7 @@ const TourWidget = () => {
 
       setBestTour({
         routes: filterTour(best),
+        rawRoutes: best
       });
     } else {
       const best = getBest(dHRoutes, settings.scu);
@@ -48,6 +50,7 @@ const TourWidget = () => {
 
       setBestTour({
         routes: filterTour(best),
+        rawRoutes: best,
         maxScu: maxScu,
         profit: maxPrice,
       });
@@ -103,7 +106,29 @@ const TourWidget = () => {
           </div>
         </div>
         <Tooltip label="Start">
-          <Button disabled={!bestTour} color="green" variant="light" fullWidth size="compact-md">
+          <Button 
+            disabled={!bestTour} 
+            color="green" 
+            variant="light" 
+            fullWidth 
+            size="compact-md"
+            onClick={() => {
+              if(settings.clearOnStart){
+                setDHRoutes([]);
+                setHRoutes([]);
+              }
+              else {
+                if(settings.quickMode){
+                  const remainingRoutes = hRoutes.filter((v) => !bestTour?.rawRoutes.includes(v))
+                  setHRoutes(remainingRoutes)
+                }
+                else {
+                  const remainingRoutes = dHRoutes.filter((v) => !bestTour?.rawRoutes.includes(v))
+                  setDHRoutes([...remainingRoutes])
+                }
+              }
+            }}
+          >
             <IconRocket />
           </Button>
         </Tooltip>
