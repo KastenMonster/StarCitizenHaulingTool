@@ -77,7 +77,7 @@ const TourWidget = () => {
       <Stack gap={'xs'}>
         {!bestTour && !isMobile && (
           <Text c={'dimmed'} size="sm">
-            Please add routes via the button below or by using <Kbd>STRG + K</Kbd>
+            Please add routes via the plus button or by using <Kbd>STRG + K</Kbd>
           </Text>
         )}
         {!bestTour && isMobile && (
