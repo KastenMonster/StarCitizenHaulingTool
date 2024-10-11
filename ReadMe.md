@@ -12,6 +12,8 @@ You can find the current version [here](https://kastenmonster.github.io/StarCiti
 
 You're free to open a issue here on Github with your feedback
 
+#### Found a bug?
+
 Feel free to open an issue here on GitHub, or submit a fix directly via a pull request.
 
 ## How to use this tool?
