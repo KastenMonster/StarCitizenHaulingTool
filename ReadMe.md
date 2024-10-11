@@ -14,6 +14,16 @@ You're free to open a issue here on Github with your feedback
 
 Feel free to open an issue here on GitHub, or submit a fix directly via a pull request.
 
+## How to use this tool?
+
+You can add missions using the plus button or by pressing 
+
+`CTRL` + `K`.
+
+The inputs follow an open format, allowing you to enter custom names for each in-game location. After submitting each route, the tool will display the optimal route. Once you've finished entering all routes, or if you're satisfied, you can start the mission.
+
+By clicking on the settings icon, you can adjust certain values to customize your preferences.
+
 ## What this tool is/isn't
 
 ### What this tool is
@@ -32,6 +42,12 @@ The tool includes a detailed mode that allows you to factor in the price and SCU
 #### What this tool isn't
 
 Due to the number of hauling missions currently in the game, this tool does not attempt to solve the traveling salesman problem. Therefore, it does not link or combine *Origin-Destination-Origin* routes to maximize values.
+
+## Roadmap
+
+- Add browser cache to store locations names
+
+- Add export/import of locations names
 
 ## Authors
 
