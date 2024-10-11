@@ -1,6 +1,6 @@
 # Star Citizen Hauling Tool
 
-This tool helps you find the best hauling route from over 100+ missions currently available in-game.
+This tool helps you find the best hauling route from over 100+ missions currently available in-game. The website layout is designed primarily for mobile use, given that Star Citizen minimizes when you tab out of the game. However, it can also be used on PC.
 
 ## FAQ
 
