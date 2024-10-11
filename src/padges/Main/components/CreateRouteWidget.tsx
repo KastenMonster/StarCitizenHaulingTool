@@ -45,7 +45,7 @@ const CreateRouteWidget = () => {
               <>
                 <Text size="sm">Create a new route</Text>
                 <Text fs={'italic'} size="sm" c={'dimmed'}>
-                  STRG + K
+                  CTRL + K
                 </Text>
               </>
             }
