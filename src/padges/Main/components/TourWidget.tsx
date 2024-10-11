@@ -74,73 +74,66 @@ const TourWidget = () => {
       >
         Tour
       </Badge>
-      <Stack gap={'xs'}>
-        {!bestTour && !isMobile && (
-          <Text c={'dimmed'} size="sm">
-            Please add routes via the plus button or by using <Kbd>CTRL + K</Kbd>
-          </Text>
-        )}
-        {!bestTour && isMobile && (
-          <Text c={'dimmed'} size="sm">
-            Please add routes via the plus button at the bottom right
-          </Text>
-        )}
-        {!settings.quickMode && bestTour?.maxScu && bestTour.profit && (
-          <Group gap={'xs'}>
-            <Flex gap={'xs'} justify={'center'}>
-              <Text c={'dimmed'} size="sm">
-                Profit:
-              </Text>
-              <Badge color="blue" variant="light">
-                {bestTour.profit}k
-              </Badge>
-            </Flex>
-            <Flex gap={'xs'} justify={'center'}>
-              <Text c={'dimmed'} size="sm">
-                Total:
-              </Text>
-              <Badge color="yellow" variant="light">
-                {bestTour.maxScu} SCU
-              </Badge>
-            </Flex>
-          </Group>
-        )}
-        <div
-          style={{
-            flexGrow: 1,
+      {!bestTour && !isMobile && (
+        <Text c={'dimmed'} size="sm">
+          Please add routes via the plus button or by using <Kbd>CTRL + K</Kbd>
+        </Text>
+      )}
+      {!bestTour && isMobile && (
+        <Text c={'dimmed'} size="sm">
+          Please add routes via the plus button at the bottom right
+        </Text>
+      )}
+      {!settings.quickMode && bestTour?.maxScu && bestTour.profit && (
+        <Group gap={'xs'} mb={'xs'}>
+          <Flex gap={'xs'} justify={'center'}>
+            <Text c={'dimmed'} size="sm">
+              Profit:
+            </Text>
+            <Badge color="blue" variant="light">
+              {bestTour.profit}k
+            </Badge>
+          </Flex>
+          <Flex gap={'xs'} justify={'center'}>
+            <Text c={'dimmed'} size="sm">
+              Total:
+            </Text>
+            <Badge color="yellow" variant="light">
+              {bestTour.maxScu} SCU
+            </Badge>
+          </Flex>
+        </Group>
+      )}
+      <div className={classes.routeWrapper}>
+        {bestTour?.routes.map((route, index) => <Route key={'display-route-' + index} {...route} />)}
+      </div>
+      <Tooltip label="Start">
+        <Button
+          disabled={!bestTour}
+          color="green"
+          variant="light"
+          fullWidth
+          mt={'xs'}
+          size="compact-lg"
+          onClick={() => {
+            if (!settings.quickMode) setTotal(total + (bestTour?.profit || 0) * 1000);
+            if (settings.clearOnStart) {
+              setDHRoutes([]);
+              setHRoutes([]);
+            } else {
+              if (settings.quickMode) {
+                const remainingRoutes = hRoutes.filter((v) => !bestTour?.rawRoutes.includes(v));
+                setHRoutes(remainingRoutes);
+              } else {
+                const remainingRoutes = dHRoutes.filter((v) => !bestTour?.rawRoutes.includes(v));
+                setDHRoutes([...remainingRoutes]);
+              }
+            }
           }}
         >
-          <div className={classes.routeWrapper}>
-            {bestTour?.routes.map((route, index) => <Route key={'display-route-' + index} {...route} />)}
-          </div>
-        </div>
-        <Tooltip label="Start">
-          <Button
-            disabled={!bestTour}
-            color="green"
-            variant="light"
-            fullWidth
-            size="compact-lg"
-            onClick={() => {
-              if (!settings.quickMode) setTotal(total + (bestTour?.profit || 0) * 1000);
-              if (settings.clearOnStart) {
-                setDHRoutes([]);
-                setHRoutes([]);
-              } else {
-                if (settings.quickMode) {
-                  const remainingRoutes = hRoutes.filter((v) => !bestTour?.rawRoutes.includes(v));
-                  setHRoutes(remainingRoutes);
-                } else {
-                  const remainingRoutes = dHRoutes.filter((v) => !bestTour?.rawRoutes.includes(v));
-                  setDHRoutes([...remainingRoutes]);
-                }
-              }
-            }}
-          >
-            <IconRocket />
-          </Button>
-        </Tooltip>
-      </Stack>
+          <IconRocket />
+        </Button>
+      </Tooltip>
     </>
   );
 };

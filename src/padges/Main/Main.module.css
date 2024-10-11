@@ -77,4 +77,8 @@
     .widgetWrapper {
         width: 90%;
     }
+
+    .widget {
+        max-height: 40%;
+    }
 }
