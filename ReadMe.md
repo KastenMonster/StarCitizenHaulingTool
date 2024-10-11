@@ -29,7 +29,7 @@ It will also display missions that involve combinations like *Port Tressler - Py
 
 The tool includes a detailed mode that allows you to factor in the price and SCU of each mission. Using these details, it ranks each mission (that was selected in the initial scan) based on *price per SCU*. The tool will then sum up the missions until the specified ship SCU is filled.
 
-### What this tool isn't
+#### What this tool isn't
 
 Due to the number of hauling missions currently in the game, this tool does not attempt to solve the traveling salesman problem. Therefore, it does not link or combine *Origin-Destination-Origin* routes to maximize values.
 
