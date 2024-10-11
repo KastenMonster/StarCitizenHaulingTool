@@ -8,7 +8,7 @@ This tool helps you find the best hauling route from over 100+ missions currentl
 
 You can find the current version [here](https://kastenmonster.github.io/StarCitizenHaulingTool/) hosted on GitHub Pages. You also have the option to build the website yourself.
 
-### Submit Feedback?
+#### Submit Feedback?
 
 You're free to open a issue here on Github with your feedback
 
